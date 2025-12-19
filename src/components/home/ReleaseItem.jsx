@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 
 export default function ReleaseItem() {
+  const releases = music;
   const [isOpen, setIsOpen] = useState(false);
   const isPatreon = release.type === 'patreon_post';
 
