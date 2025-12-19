@@ -88,11 +88,11 @@ export default function Home() {
     const timeoutId = scheduleNextFlicker();
     return () => clearTimeout(timeoutId);
   }, []);
-//  const { data: releases, isLoading } = useQuery({
-//    queryKey: ['releases'],
-//    queryFn: () => base44.entities.Release.list('sort_order'),
-//    initialData: []
-//  });
+  const { data: releases, isLoading } = useQuery({
+    queryKey: ['releases'],
+    queryFn: () => base44.entities.Release.list('sort_order'),
+    initialData: []
+  });
 
   const { data: highlights = [] } = useQuery({
     queryKey: ['highlights'],
@@ -362,5 +362,6 @@ export default function Home() {
 
 
 }
+
 
 
