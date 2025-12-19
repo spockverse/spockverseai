@@ -40,7 +40,7 @@ export default function ReleaseItem({ release, index }) {
         {/* Image */}
         <div className="relative w-full md:w-32 h-32 md:h-24 shrink-0 rounded-md overflow-hidden">
           <img 
-            src={release.cover_image || 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop'} 
+            src={release.image || 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop'} 
             alt={release.title} 
             loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 will-change-transform"
