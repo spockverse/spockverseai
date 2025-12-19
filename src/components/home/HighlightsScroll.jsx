@@ -1,8 +1,9 @@
-import commentHighlights from "../data/commentHighlights.json";
+import commentHighlights from "../../data/commentHighlights.json";
 
 import React from 'react';
 
-export default function HighlightsScroll({ highlights }) {
+export default function HighlightsScroll() {
+  const highlights = commentHighlights;
   if (!highlights || highlights.length === 0) return null;
 
   return (
