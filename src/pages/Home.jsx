@@ -88,11 +88,11 @@ export default function Home() {
     const timeoutId = scheduleNextFlicker();
     return () => clearTimeout(timeoutId);
   }, []);
-  const { data: releases, isLoading } = useQuery({
-    queryKey: ['releases'],
-    queryFn: () => base44.entities.Release.list('sort_order'),
-    initialData: []
-  });
+//  const { data: releases, isLoading } = useQuery({
+//    queryKey: ['releases'],
+//    queryFn: () => base44.entities.Release.list('sort_order'),
+//    initialData: []
+//  });
 
   const { data: highlights = [] } = useQuery({
     queryKey: ['highlights'],
@@ -108,7 +108,7 @@ export default function Home() {
   });
 
   // Filter releases - songs/videos for Latest Releases
-  const latestSongs = releases.filter((r) => r.type === 'song' || r.type === 'video');
+ // const latestSongs = releases.filter((r) => r.type === 'song' || r.type === 'video');
 
   // Hero Cards Data
   const heroLinks = [
@@ -362,3 +362,4 @@ export default function Home() {
 
 
 }
+
