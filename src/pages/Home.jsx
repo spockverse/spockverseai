@@ -108,7 +108,7 @@ export default function Home() {
   });
 
   // Filter releases - songs/videos for Latest Releases
- // const latestSongs = releases.filter((r) => r.type === 'song' || r.type === 'video');
+  const latestSongs = releases; //.filter((r) => r.type === 'song' || r.type === 'video');
 
   // Hero Cards Data
   const heroLinks = [
@@ -362,4 +362,5 @@ export default function Home() {
 
 
 }
+
 
