@@ -1,4 +1,3 @@
-import music from "../../data/music.json";
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
