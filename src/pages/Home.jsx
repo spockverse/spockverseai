@@ -1,4 +1,4 @@
-import music from '../../data/music.json';
+import music from '@/data/music.json';
 import patreonDrops from '@/data/patreonDrops.json';
 import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -10,9 +10,7 @@ import PatreonPostItem from '@/components/home/PatreonPostItem';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
 const releases = music;
-const patreonPosts = patreonDrops;
 const isLoading = false;
-const patreonLoading = false;
 
 export default function Home() {
   const logoRef = useRef(null);
@@ -88,11 +86,11 @@ export default function Home() {
     const timeoutId = scheduleNextFlicker();
     return () => clearTimeout(timeoutId);
   }, []);
-  const { data: releases, isLoading } = useQuery({
-    queryKey: ['releases'],
-    queryFn: () => base44.entities.Release.list('sort_order'),
-    initialData: []
-  });
+//  const { data: releases, isLoading } = useQuery({
+//    queryKey: ['releases'],
+//    queryFn: () => base44.entities.Release.list('sort_order'),
+//    initialData: []
+//  });
 
   const { data: highlights = [] } = useQuery({
     queryKey: ['highlights'],
@@ -362,6 +360,7 @@ export default function Home() {
 
 
 }
+
 
 
 
