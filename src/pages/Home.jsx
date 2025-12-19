@@ -1,3 +1,5 @@
+import music from '@/data/music.json';
+import patreonDrops from '@/data/patreonDrops.json';
 import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -7,6 +9,10 @@ import ReleaseItem from '@/components/home/ReleaseItem';
 import PatreonPostItem from '@/components/home/PatreonPostItem';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
+const releases = music;
+const patreonPosts = patreonDrops;
+const isLoading = false;
+const patreonLoading = false;
 
 export default function Home() {
   const logoRef = useRef(null);
@@ -353,5 +359,6 @@ export default function Home() {
 
       </div>
     </div>);
+
 
 }
