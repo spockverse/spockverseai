@@ -1,4 +1,4 @@
-import music from '@/data/music.json';
+import music from '../../data/music.json';
 import patreonDrops from '@/data/patreonDrops.json';
 import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -362,6 +362,7 @@ export default function Home() {
 
 
 }
+
 
 
 
