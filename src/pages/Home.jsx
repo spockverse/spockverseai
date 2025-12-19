@@ -314,7 +314,7 @@ export default function Home() {
               ) :
               latestSongs.length > 0 ?
               latestSongs.map((release, idx) =>
-              <ReleaseItem key={release.id} release={release} index={idx} />
+              <ReleaseItem key={idx} release={release} index={idx} />
               ) :
 
               <p className="text-zinc-500 italic">No public transmissions detected...</p>
@@ -360,6 +360,7 @@ export default function Home() {
 
 
 }
+
 
 
 
