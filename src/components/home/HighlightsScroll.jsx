@@ -1,3 +1,5 @@
+import commentHighlights from "../data/commentHighlights.json";
+
 import React from 'react';
 
 export default function HighlightsScroll({ highlights }) {
