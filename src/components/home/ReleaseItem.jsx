@@ -6,7 +6,7 @@ import { PlayCircle, Lock, Calendar, Music, Zap, Youtube, X } from 'lucide-react
 import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 
-export default function ReleaseItem({ release, index }) {
+export default function ReleaseItem() {
   const [isOpen, setIsOpen] = useState(false);
   const isPatreon = release.type === 'patreon_post';
 
