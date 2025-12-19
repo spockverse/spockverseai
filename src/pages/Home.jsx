@@ -10,6 +10,7 @@ import PatreonPostItem from '@/components/home/PatreonPostItem';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
 const releases = music;
+const latestSongs = releases;
 const isLoading = false;
 
 export default function Home() {
@@ -360,6 +361,7 @@ export default function Home() {
 
 
 }
+
 
 
 
