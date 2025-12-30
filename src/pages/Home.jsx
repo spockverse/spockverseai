@@ -1,16 +1,12 @@
-import music from '@/data/music.json';
 import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Youtube, Music, DollarSign, Disc, Lock } from 'lucide-react';
+import { Youtube, Music, DollarSign, Disc, Lock, Star } from 'lucide-react';
 import HeroLinkCard from '@/components/home/HeroLinkCard';
 import ReleaseItem from '@/components/home/ReleaseItem';
-import PatreonPostItem from '@/components/home/PatreonPostItem';
+import FeaturedHighlight from '@/components/home/FeaturedHighlight';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
-const releases = music;
-const latestSongs = releases;
-const isLoading = false;
 
 export default function Home() {
   const logoRef = useRef(null);
@@ -86,27 +82,28 @@ export default function Home() {
     const timeoutId = scheduleNextFlicker();
     return () => clearTimeout(timeoutId);
   }, []);
-//  const { data: releases, isLoading } = useQuery({
-//    queryKey: ['releases'],
-//    queryFn: () => base44.entities.Release.list('sort_order'),
-//    initialData: []
-//  });
+  const { data: releases, isLoading } = useQuery({
+    queryKey: ['releases'],
+    queryFn: () => base44.entities.Release.list('sort_order'),
+    initialData: []
+  });
 
   const { data: highlights = [] } = useQuery({
-    queryKey: ['highlights'],
-    queryFn: () => base44.entities.CommentHighlight.list('sort_order'),
-    initialData: []
-  });
+            queryKey: ['highlights'],
+            queryFn: () => base44.entities.CommentHighlight.list('sort_order'),
+            initialData: []
+          });
 
-  // Patreon Drops - fetch only 10 most recent by release_date desc
-  const { data: patreonPosts = [], isLoading: patreonLoading } = useQuery({
-    queryKey: ['patreon_releases', 'latest10'],
-    queryFn: () => base44.entities.Release.filter({ type: 'patreon_post' }, '-release_date', 10),
-    initialData: []
-  });
+          const { data: featured = [], isLoading: featuredLoading } = useQuery({
+            queryKey: ['featured'],
+            queryFn: () => base44.entities.Release.filter({ type: 'featured' }, 'sort_order', 1),
+            initialData: []
+          });
+
+
 
   // Filter releases - songs/videos for Latest Releases
-  const latestSongs = releases; //.filter((r) => r.type === 'song' || r.type === 'video');
+  const latestSongs = releases.filter((r) => r.type === 'song' || r.type === 'video');
 
   // Hero Cards Data
   const heroLinks = [
@@ -314,7 +311,7 @@ export default function Home() {
               ) :
               latestSongs.length > 0 ?
               latestSongs.map((release, idx) =>
-              <ReleaseItem key={idx} release={release} index={idx} />
+              <ReleaseItem key={release.id} release={release} index={idx} />
               ) :
 
               <p className="text-zinc-500 italic">No public transmissions detected...</p>
@@ -324,47 +321,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Patreon Exclusive */}
+        {/* Featured Highlight */}
         <section className="space-y-8">
           <div className="flex items-center gap-3 border-b border-zinc-800 pb-4">
-            <Lock className="w-6 h-6 text-orange-500" />
-            <h2 className="text-2xl font-bold text-white tracking-tight">PATREON DROPS</h2>
+            <Star className="w-6 h-6 text-yellow-400" />
+            <h2 className="text-2xl font-bold text-white tracking-tight">MOST PROUD OF</h2>
           </div>
 
-          <div className="relative">
-            <div className="space-y-4 max-h-[360px] overflow-y-auto pr-3 retro-scrollbar">
-              {patreonLoading ?
-              [1, 2].map((i) =>
-              <Skeleton key={i} className="h-24 w-full bg-zinc-900" />
-              ) :
-              patreonPosts.length > 0 ?
-              patreonPosts.map((release, idx) =>
-              <PatreonPostItem key={release.id} post={{
-                id: release.id,
-                title: release.title,
-                published_at: release.release_date,
-                url: release.patreon_url || release.url,
-                image: release.cover_image
-              }} index={idx} />
-              ) :
-
-              <p className="text-zinc-500 italic">Archives are currently sealed...</p>
-              }
-            </div>
-            <div className="absolute bottom-0 left-0 right-3 h-20 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none" />
-          </div>
+          {featuredLoading ? (
+            <Skeleton className="h-28 w-full bg-zinc-900" />
+          ) : featured.length > 0 ? (
+            <FeaturedHighlight
+              title={featured[0].title}
+              subtitle="Creator's Pick"
+              description={featured[0].description}
+              image={featured[0].cover_image || 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=1600&auto=format&fit=crop'}
+              url={featured[0].url || featured[0].patreon_url || featured[0].spotify_url || featured[0].youtube_url || featured[0].suno_url}
+              ctaText="Explore the piece"
+            />
+          ) : (
+            <p className="text-zinc-500 italic">No featured item yet.</p>
+          )}
         </section>
 
       </div>
     </div>);
 
-
 }
-
-
-
-
-
-
-
-
