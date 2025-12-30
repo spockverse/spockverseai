@@ -4,7 +4,6 @@ import { base44 } from '@/api/base44Client';
 import { Youtube, Music, DollarSign, Disc, Lock, Star } from 'lucide-react';
 import HeroLinkCard from '@/components/home/HeroLinkCard';
 import ReleaseItem from '@/components/home/ReleaseItem';
-import FeaturedHighlight from '@/components/home/FeaturedHighlight.jsx';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -13,6 +12,50 @@ export default function Home() {
   const heroRef = useRef(null);
   const audioRef = useRef(null);
   const [introPlayed, setIntroPlayed] = useState(false);
+
+  function FeaturedHighlight({ title, subtitle, description, image, url, ctaText }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative flex flex-col md:flex-row items-center gap-6 p-4 bg-zinc-900/40 border border-zinc-800 hover:bg-zinc-900 hover:border-zinc-700 rounded-lg transition-all duration-300 overflow-hidden"
+    >
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-yellow-500" />
+
+      <div className="relative w-full md:w-40 h-40 md:h-28 shrink-0 rounded-md overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="flex-1 w-full md:w-auto text-center md:text-left">
+        {subtitle && (
+          <div className="mb-1">
+            <span className="text-xs text-yellow-400">
+              {subtitle}
+            </span>
+          </div>
+        )}
+        <h3 className="text-lg font-bold text-white">
+          {title}
+        </h3>
+        {description && (
+          <p className="text-sm text-zinc-400 mt-1">
+            {description}
+          </p>
+        )}
+        {ctaText && (
+          <div className="mt-3 text-sm font-semibold text-yellow-400">
+            {ctaText}
+          </div>
+        )}
+      </div>
+    </a>
+  )
+}
 
   // ========================================
   // GLITCH INTRO EFFECT - HOMEPAGE ONLY
@@ -348,4 +391,5 @@ export default function Home() {
     </div>);
 
 }
+
 
