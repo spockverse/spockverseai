@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
 import { Youtube, Music, DollarSign, Disc, Lock } from 'lucide-react';
 import HeroLinkCard from '@/components/home/HeroLinkCard';
 import ReleaseItem from '@/components/home/ReleaseItem';
@@ -355,3 +353,4 @@ export default function Home() {
     </div>);
 
 }
+
