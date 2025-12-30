@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Youtube, Music, DollarSign, Disc, Lock, Star } from 'lucide-react';
 import HeroLinkCard from '@/components/home/HeroLinkCard';
 import ReleaseItem from '@/components/home/ReleaseItem';
-import FeaturedHighlight from '@/components/home/FeaturedHighlight';
+import FeaturedHighlight from '@/components/home/FeaturedHighlight.jsx';
 import HighlightsScroll from '@/components/home/HighlightsScroll';
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -348,3 +348,4 @@ export default function Home() {
     </div>);
 
 }
+
